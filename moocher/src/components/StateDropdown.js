@@ -1,6 +1,7 @@
 import React from 'react';
 import { Dropdown } from 'semantic-ui-react';
 
+
 const stateOptions = [
   { key: 'AL', text: 'AL', value: 'AL' },
   { key: 'AK', text: 'AK', value: 'AK' },
@@ -55,8 +56,13 @@ const stateOptions = [
   { key: 'WY', text: 'WY', value: 'WY' }
 ];
 
-const stateDropdown = () => (
-  <Dropdown placeholder="Select State" fluid selection options={stateOptions} />
+const stateDropdown = (props) => (
+  <Dropdown placeholder="Select State" 
+  fluid selection 
+  options={stateOptions} 
+  value={props.state}
+  onChange={(e, value) => props.handleDropDown(value.value)}
+  />
 );
 
 export default stateDropdown;

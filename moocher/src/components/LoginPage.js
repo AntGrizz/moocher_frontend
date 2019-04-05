@@ -1,21 +1,54 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Button, Form, Header, Container } from 'semantic-ui-react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { setUser } from '../redux/actions/users';
 
-class LoginPage extends Component {
+class LoginPage extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      username: '',
+      password: ''
+    };
+  }
+
+  setUserLogin = e => {
+    if (this.state.username !== '') {
+      this.props.setUserLogin(this.state.username, this.state.password);
+      this.resetForm();
+    }
+  };
+
+  resetForm = () => {
+    this.setState({ username: '', password: '' });
+  };
+
   render() {
     return (
       <div>
         <Container className="ui attached segment" id="login-area">
           <Header as="h3">Login</Header>
-          <Form>
+          <Form onSubmit={e => this.setUserLogin(e)}>
             <Form.Field>
               <label>Username</label>
-              <input placeholder="Username" />
+              <input
+                value={this.state.username}
+                onChange={e => {
+                  this.setState({ username: e.target.value });
+                }}
+                placeholder="Username"
+              />
             </Form.Field>
             <Form.Field>
               <label>Password</label>
-              <input placeholder="Password" />
+              <input
+                value={this.state.password}
+                onChange={e => {
+                  this.setState({ password: e.target.value });
+                }}
+                placeholder="Password"
+              />
             </Form.Field>
             <Button type="submit">Submit</Button>
           </Form>
@@ -30,4 +63,21 @@ class LoginPage extends Component {
   }
 }
 
-export default LoginPage;
+const mapStateToProps = state => {
+  return {
+    user: state.user
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    setUserLogin: (username, password) => {
+      dispatch(setUser(username, password));
+    }
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(LoginPage);
