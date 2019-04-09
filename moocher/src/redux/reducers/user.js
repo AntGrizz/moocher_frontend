@@ -1,6 +1,6 @@
 import { SET_USER } from '../actions/user'
 
-export const user = (oldState={}, action) => {
+const user = (oldState={}, action) => {
   switch(action.type){
     case SET_USER:
       return action.payload

@@ -1,5 +1,4 @@
 import React, { Component} from 'react';
-import { Header } from 'semantic-ui-react';
 import { Route, Redirect, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import LoginPage from '../components/LoginPage';
@@ -42,11 +41,10 @@ class Moocher extends Component {
           }}
           />
 
-          <Route
-            path="/items"
-            render={() => {
-              return <GroupItems />;
-            }}
+          <Route exact path="/items" render={() => {
+            return isEmpty(this.props.user) ? <Redirect to="/login" /> :
+              <GroupItems />
+          }}
           />
           <Route exact path="/create_account" component={CreateUser}/>
         </Switch>

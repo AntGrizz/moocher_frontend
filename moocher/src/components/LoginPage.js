@@ -29,6 +29,8 @@ class LoginPage extends React.Component {
    
     return (
       <div>
+        <Header id='header' as="h1">Moocher</Header>
+        <Header as="h1">Because what are friends for?</Header>
         <Container className="ui attached segment" id="login-area">
           <Header as="h3">Login</Header>
           <Form onSubmit={e => this.handleUserLogin(e)}>
@@ -45,6 +47,7 @@ class LoginPage extends React.Component {
             <Form.Field>
               <label>Password</label>
               <input
+                type='password'
                 value={this.state.password}
                 onChange={e => {
                   this.setState({ password: e.target.value });

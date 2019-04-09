@@ -32,18 +32,3 @@
   }
 }
 
-#login-area{
- margin-top: 25vh;
- width: 30vw;
- padding: 3vw;
- border: 1px solid lightgray;
- border-radius: 10px;
-}
-
-#create-area{
- margin-top:10vh;
- width: 30vw;
- padding: 3vw;
- border: 1px solid lightgray;
- border-radius: 10px;
-}

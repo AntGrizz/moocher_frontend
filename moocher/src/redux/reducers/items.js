@@ -1,4 +1,4 @@
-const itemsReducer = (oldState=[], action) => {
+const items = (oldState=[], action) => {
   switch(action.type){
     case "GET_ITEMS":
       return [...oldState, action.payload]
@@ -7,4 +7,4 @@ const itemsReducer = (oldState=[], action) => {
     }
 }
 
-export default itemsReducer
+export default items
