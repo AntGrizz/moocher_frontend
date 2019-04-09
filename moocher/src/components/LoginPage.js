@@ -2,34 +2,36 @@ import React from 'react';
 import { Button, Form, Header, Container } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { setUser } from '../redux/actions/users';
+import { fetchingUser } from '../redux/actions/user';
 
 class LoginPage extends React.Component {
   constructor() {
     super();
     this.state = {
       username: '',
-      password: ''
+      password: '',
+      redirect: false
     };
   }
 
-  setUserLogin = e => {
+  handleUserLogin = e => {
     if (this.state.username !== '') {
-      this.props.setUserLogin(this.state.username, this.state.password);
+      this.props.setUserLogin(this.state.username, this.state.password)
       this.resetForm();
     }
   };
 
   resetForm = () => {
-    this.setState({ username: '', password: '' });
+    this.setState({ username: '', password: '', redirect: !this.state.redirect});
   };
 
   render() {
+   
     return (
       <div>
         <Container className="ui attached segment" id="login-area">
           <Header as="h3">Login</Header>
-          <Form onSubmit={e => this.setUserLogin(e)}>
+          <Form onSubmit={e => this.handleUserLogin(e)}>
             <Form.Field>
               <label>Username</label>
               <input
@@ -52,11 +54,11 @@ class LoginPage extends React.Component {
             </Form.Field>
             <Button type="submit">Submit</Button>
           </Form>
-          {/* <br />
+          <br />
           <br />
           <Link to="/create_account" className="fluid ui button">
             New user? Create an account
-          </Link> */}
+          </Link>
         </Container>
       </div>
     );
@@ -72,7 +74,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     setUserLogin: (username, password) => {
-      dispatch(setUser(username, password));
+      dispatch(fetchingUser(username, password));
     }
   };
 };

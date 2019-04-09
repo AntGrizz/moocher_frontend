@@ -1,12 +1,11 @@
-import {CREATE_USER} from "../actions/users"
+import { NEW_USER } from '../actions/user'
 
-const newUser = (oldState = {}, action) => {
-  switch (action.type) {
-    case CREATE_USER:
-    return action.payload
+export const newUser = (oldState = {}, action) => {
+  switch(action.type) {
+    case NEW_USER:
+      return action.payload
     default:
       return oldState
   }
 }
 
-export default newUser

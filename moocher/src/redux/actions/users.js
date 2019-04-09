@@ -1,34 +1,19 @@
-export const CREATE_USER = 'CREATE_USER';
-export const SET_USER = 'SET_USER';
+export const FETCHED_USERS = 'FETCHED_USERS';
 
-export const createUser = (
-  username,
-  password,
-  firstName,
-  lastName,
-  street,
-  city,
-  state,
-  zipCode
-) => {
-  return {
-    type: CREATE_USER,
-    payload: {
-      username: username,
-      password: password,
-      firstName: firstName,
-      lastName: lastName,
-      street: street,
-      city: city,
-      state: state,
-      zipCode: zipCode
-    }
-  };
-};
+const URL = 'http://localhost:3000/users'
 
-export const setUser = (username, password) => {
-  return {
-    type: 'SET_USER',
-    payload: { username: username, password: password }
+
+export function fetchedUsers(users) {
+  return { type: "FETCHED_USERS", payload: users }
+}
+
+export function fetchingUsers() {
+  return dispatch => {
+    fetch(URL)
+      .then(res => res.json())
+      .then(users => {
+        console.log(users);
+        dispatch(fetchedUsers(users));
+      });
   };
-};
+}

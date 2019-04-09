@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { Button, Form, Header, Container } from 'semantic-ui-react';
 import StateDropdown from './StateDropdown';
 import { connect } from 'react-redux';
-import newUser from '../redux/reducers/newUser';
+import {setUser, newUser}  from '../redux/actions/user';
+
 
 class CreateUser extends Component {
   constructor() {
@@ -10,12 +11,12 @@ class CreateUser extends Component {
     this.state = {
       firstName: '',
       lastName: '',
-      userName: '',
+      username: '',
       password: '',
       street: '',
       city: '',
       state: '',
-      zipCode: null
+      zipCode: ''
     };
   }
 
@@ -23,14 +24,20 @@ class CreateUser extends Component {
     this.setState({ state: val });
   };
 
-  handleSubmit = () => {
+  handleSubmit = (e) => {
+    e.preventDefault()
     if (this.state.username !== '') {
-      this.props.setUserLogin(
+      this.props.newUser(
         this.state.firstName,
         this.state.lastName,
         this.state.username,
-        this.state.password
+        this.state.password,
+        this.state.street,
+        this.state.city,
+        this.state.state,
+        this.state.zipCode
       );
+      this.props.setUser(this.state.username, this.state.password)
       this.resetForm();
     }
   };
@@ -39,12 +46,12 @@ class CreateUser extends Component {
     this.setState({
       firstName: '',
       lastName: '',
-      userName: '',
+      username: '',
       password: '',
       street: '',
       city: '',
       state: '',
-      zipCode: null
+      zipCode: ''
     });
   };
 
@@ -52,7 +59,7 @@ class CreateUser extends Component {
     return (
       <Container className="ui attached segment" id="create-area">
         <Header as="h3">Create User</Header>
-        <Form>
+        <Form onSubmit={ e => this.handleSubmit(e)}>
           <Form.Field>
             <label>First Name</label>
             <input
@@ -79,7 +86,7 @@ class CreateUser extends Component {
               placeholder="Username"
               value={this.state.username}
               onChange={e => {
-                this.setState({ usename: e.target.value });
+                this.setState({ username: e.target.value });
               }}
             />
           </Form.Field>
@@ -137,15 +144,25 @@ class CreateUser extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    newUser: state.newUser
-  };
-};
+// const mapStateToProps = state => {
+//   return {
+//     newUser: state.newUser,
+//     user: state.user
+//   };
+// };
 
-const mapDispatchToProps = () => {};
+const mapDispatchToProps = dispatch => {
+  return {
+    newUser: (firstName, lastName, userName, password, street, city, state, zipCode) => {
+      dispatch(newUser(firstName, lastName, userName, password, street, city, state, zipCode))
+    },
+    setUser: (userName, password) => {
+      dispatch(setUser(userName, password))
+    }
+  }
+}
 
 export default connect(
-  mapStateToProps,
+  null,
   mapDispatchToProps
 )(CreateUser);
