@@ -29,7 +29,7 @@ class LoginPage extends React.Component {
    
     return (
       <div>
-        <Header id='header' as="h1">Moocher</Header>
+        <Header id='login-header' as="h1">Moocher</Header>
         <Header as="h1">Because what are friends for?</Header>
         <Container className="ui attached segment" id="login-area">
           <Header as="h3">Login</Header>

@@ -28,6 +28,7 @@ class Moocher extends Component {
     return (
       <div>
         <NavBar />
+        
         <Switch>
           <Route exact path="/" render={() => <Redirect to="/profile" />} />
           <Route exact path="/profile" render={() => {
@@ -48,6 +49,7 @@ class Moocher extends Component {
           />
           <Route exact path="/create_account" component={CreateUser}/>
         </Switch>
+        
       </div>
     );
   }

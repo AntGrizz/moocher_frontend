@@ -50,7 +50,8 @@ export function fetchingUser(username, password) {
         console.log(user)
         if (user.authenticated){
           localStorage.setItem('token', user.token)
-          dispatch(setUser(user))
+          // debugger
+          dispatch(setUser(user.user))
         }else{
           alert('Incorrect username or password')
         }
@@ -58,6 +59,8 @@ export function fetchingUser(username, password) {
       })
   }
 }
+
+
 
 export function fetchLoggedInUser(token){
   return dispatch => {
