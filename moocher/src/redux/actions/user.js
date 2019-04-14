@@ -1,32 +1,9 @@
-export const NEW_USER = 'NEW_USER';
 export const SET_USER = 'SET_USER';
+export const LOADING_USER = 'LOADING_USER'
 
 const URL = 'http://localhost:3000/login'
+const userURL = 'http://localhost:3000/users'
 
-export const newUser = (
-  firstName,
-  lastName,
-  username,
-  password,
-  street,
-  city,
-  state,
-  zipCode
-) => {
-  return {
-    type: NEW_USER,
-    payload: {
-      firstName: firstName,
-      lastName: lastName,
-      username: username,
-      password: password,
-      street: street,
-      city: city,
-      state: state,
-      zipCode: zipCode
-    }
-  };
-};
 
 export const setUser = (user) => {
   return {
@@ -35,6 +12,9 @@ export const setUser = (user) => {
   };
 };
 
+export function loadingUser() {
+  return { type: "LOADING_USER" }
+}
 
 export function fetchingUser(username, password) {
   return dispatch => {
@@ -64,26 +44,50 @@ export function fetchingUser(username, password) {
 
 export function fetchLoggedInUser(token){
   return dispatch => {
+    dispatch(loadingUser())
     fetch(`http://localhost:3000/profile`, {
       headers: {
-        "Authentication": `Bearer ${token}`
+        "Authentication": `Bearer ${token}`,
       }
     })
       .then(res => res.json())
       .then(user => {
-        console.log('Token exists, user is: ', user)
         dispatch(setUser(user))
       })
     }
   }
   
-// export function fetchingUser() {
-//   return dispatch => {
-//     fetch(URL)
-//       .then(res => res.json())
-//       .then(user => {
-//         console.log(user);
-//         dispatch(setUser(user));
-//       });
-//   };
-// }
+export function createUser(
+  firstName,
+  lastName,
+  username,
+  password,
+  street,
+  city,
+  state,
+  zipCode){
+  return dispatch => {
+    dispatch(loadingUser())
+    fetch(userURL, {
+      method: 'POST',
+      headers: { "Content-Type": "application/json", "Accept": "application/json" },
+      body: JSON.stringify({
+          
+        user: {first_name: firstName,
+          last_name: lastName,
+          username: username,
+          password: password,
+          street: street,
+          city: city,
+          state: state,
+          zip_code: zipCode,
+          user_rating: 0,
+          renter_rating: 0}
+      })
+    })
+    .then(res => res.json())
+    .then(user => {
+      dispatch(setUser(user.user))
+    })
+  }
+}

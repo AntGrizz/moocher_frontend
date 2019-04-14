@@ -1,27 +1,21 @@
 import React from 'react'
-import {Card, Button} from 'semantic-ui-react'
+import {Card, Image} from 'semantic-ui-react'
 import { connect } from 'react-redux';
 import { patchRental } from '../redux/actions/updateRental';
-import marked from 'marked';
+import ReturnModal from './ReturnModal';
 
 class LoanCard extends React.Component{
   
 
-  getMarkdown = (FORM_INPUT) => {
-    if (FORM_INPUT) {
-      let markdown = marked(FORM_INPUT, { sanitize: true })
-      return { __html: markdown }
-    }
-  }
-
     render() {
     const item = this.props.user.items.find(item => item.id === this.props.rental.item_id)
     return(
-      <Card className="column card">
-        <Card.Content>
-          <div dangerouslySetInnerHTML={this.getMarkdown(item.image)} />
-        </Card.Content>
-        <Card.Header>{item.name}</Card.Header>
+      <Card centered className='card'>
+        <Card.Header>
+          <Image centered spaced src={item.image} alt={item.id} className=' ui image style'/>
+          <br/>
+          {item.name}
+        </Card.Header>
         <Card.Meta>
           <span className='date'>{`Owner: ${this.props.user.first_name} ${this.props.user.last_name}`}</span>
         </Card.Meta>
@@ -30,11 +24,7 @@ class LoanCard extends React.Component{
         }
         <Card.Description>{`Rental Period: ${this.props.rental.start_date} - ${this.props.rental.end_date}`}</Card.Description>
         <Card.Content extra>
-          <div className='ui one button'>
-            <Button basic color='black' onClick={() => this.props.closeRental(this.props.rental, this.props.user)}>
-              Return
-            </Button>
-          </div>
+          <ReturnModal rental={this.props.rental}/>
         </Card.Content>
       </Card>
     )
@@ -53,3 +43,9 @@ const mapDispatchToProps = dispatch => {
 
 export default connect(null,
   mapDispatchToProps)(LoanCard);
+
+
+
+// style = {{ height: '45vh', width: '17vw' }}
+
+// style = {{ maxWidth: '95%', height: 'auto', marginBottom: '2vh' }}

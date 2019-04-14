@@ -10,3 +10,4 @@ const user = (oldState={}, action) => {
 }
 
 export default user
+

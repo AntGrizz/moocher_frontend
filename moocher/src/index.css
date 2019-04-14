@@ -9,6 +9,10 @@ h1, h2, h3, h4, h5, h6 {
  font-weight: 500;
 }
 
+.page-div{
+  margin-right: 10vw;
+  margin-left: 10vw
+}
 
 #login-header{
  font-size: 8vh;
@@ -47,28 +51,28 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 
-#card {
+.card {
   text-align: center;
   border: grey solid 0rem;
-  padding: 1rem;
-  width: 15rem;
-  height: 1vh;
+  padding: 2vw;
+  width: 25vw;
   display: grid;
 }
 
-.ui.card, .ui.cards>.card {
-    max-width: 20vw;
-    max-height: 50vh;
-    background: #fff;
-    padding: 0;
-    transition: -webkit-box-shadow .1s ease,-webkit-transform .1s ease;
-    transition: box-shadow .1s ease,transform .1s ease,-webkit-box-shadow .1s ease,-webkit-transform .1s ease;
+.ui.button.return {
+    background: none;
 }
 
-.ui.grid>.row>.column { 
-    margin: 1vw;
+.ui.image.style {
+  max-width: 90%;
 }
 
-.ui[class*="three column"].grid>.row>.column {
-    width: 25vw;
+#category-dropdown{
+  margin-top: 1vh;
+  margin-bottom: 2vh;
+}
+
+#return-dropdown{
+  margin-top: 1vh;
+  margin-bottom: 2vh;
 }

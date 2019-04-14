@@ -3,10 +3,11 @@ import { Route, Redirect, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import LoginPage from '../components/LoginPage';
 import Profile from './Profile';
-import { GroupItems } from '../containers/GroupItems';
+import GroupItems from '../containers/GroupItems';
 import CreateUser from '../components/CreateUser';
 import NavBar from '../components/NavBar';
 import { fetchingUsers} from '../redux/actions/users';
+import { fetchingGroups} from '../redux/actions/groups';
 import { fetchLoggedInUser } from '../redux/actions/user';
 import { isEmpty } from 'lodash'
 
@@ -16,6 +17,7 @@ class Moocher extends Component {
   componentDidMount() {
     //where we fetch dispatch
     this.props.fetchingUsers();
+    this.props.fetchingGroups()
     let token = localStorage.getItem('token')
     if (token){
       this.props.fetchLoggedInUser(token)
@@ -36,6 +38,7 @@ class Moocher extends Component {
             <Profile />
           }}
           />
+         
           <Route exact path="/login" render={() => {
             return isEmpty(this.props.user) ? <LoginPage/> :
               <Redirect to="/profile" />
@@ -68,6 +71,9 @@ const mapDispatchToProps = dispatch => {
     },
     fetchLoggedInUser: (token) => {
       dispatch(fetchLoggedInUser(token))
+    },
+    fetchingGroups: () => {
+      dispatch(fetchingGroups())
     }
   };
 };

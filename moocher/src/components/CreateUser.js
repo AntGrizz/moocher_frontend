@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Button, Form, Header, Container } from 'semantic-ui-react';
 import StateDropdown from './StateDropdown';
 import { connect } from 'react-redux';
-import {setUser, newUser}  from '../redux/actions/user';
+import {setUser, createUser}  from '../redux/actions/user';
 
 
 class CreateUser extends Component {
@@ -27,7 +27,7 @@ class CreateUser extends Component {
   handleSubmit = (e) => {
     e.preventDefault()
     if (this.state.username !== '') {
-      this.props.newUser(
+      this.props.createUser(
         this.state.firstName,
         this.state.lastName,
         this.state.username,
@@ -35,9 +35,7 @@ class CreateUser extends Component {
         this.state.street,
         this.state.city,
         this.state.state,
-        this.state.zipCode
-      );
-      this.props.setUser(this.state.username, this.state.password)
+        this.state.zipCode) 
       this.resetForm();
     }
   };
@@ -144,17 +142,11 @@ class CreateUser extends Component {
   }
 }
 
-// const mapStateToProps = state => {
-//   return {
-//     newUser: state.newUser,
-//     user: state.user
-//   };
-// };
 
 const mapDispatchToProps = dispatch => {
   return {
-    newUser: (firstName, lastName, userName, password, street, city, state, zipCode) => {
-      dispatch(newUser(firstName, lastName, userName, password, street, city, state, zipCode))
+    createUser: (firstName, lastName, userName, password, street, city, state, zipCode) => {
+      dispatch(createUser(firstName, lastName, userName, password, street, city, state, zipCode))
     },
     setUser: (userName, password) => {
       dispatch(setUser(userName, password))
