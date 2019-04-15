@@ -3,13 +3,15 @@ import user from './user'
 import users from './users'
 import groups from './groups'
 import loading from './loading'
+import rentals from './rentals'
 
 
 const rootReducer = combineReducers({
   user,
   users,
   groups,
-  loading
+  loading,
+  rentals
 })
 
 export default rootReducer

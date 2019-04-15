@@ -12,7 +12,6 @@ export function fetchingUsers() {
     fetch(URL)
       .then(res => res.json())
       .then(users => {
-        console.log(users);
         dispatch(fetchedUsers(users));
       });
   };

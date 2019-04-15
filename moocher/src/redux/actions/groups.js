@@ -12,7 +12,6 @@ export function fetchingGroups() {
     fetch(URL)
       .then(res => res.json())
       .then(groups => {
-        console.log(groups);
         dispatch(fetchedGroups(groups));
       });
   };

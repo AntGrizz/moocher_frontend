@@ -1,6 +1,6 @@
 import React from 'react'
 import { Button, Header, Modal } from 'semantic-ui-react'
-import { patchRental } from '../redux/actions/updateRental'
+import { patchRental } from '../redux/actions/rentals'
 import { connect } from 'react-redux';
 import ReturnDropdown from './ReturnDropdown';
 

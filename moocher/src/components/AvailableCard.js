@@ -1,7 +1,7 @@
 import React from 'react'
 import { Card, Button } from 'semantic-ui-react'
 import { connect } from 'react-redux';
-import { patchRental } from '../redux/actions/updateRental';
+import { patchRental } from '../redux/actions/rentals';
 import marked from 'marked';
 
 class AvailableCard extends React.Component {

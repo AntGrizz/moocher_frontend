@@ -1,7 +1,7 @@
 import React from 'react'
 import {Card, Image} from 'semantic-ui-react'
 import { connect } from 'react-redux';
-import { patchRental } from '../redux/actions/updateRental';
+import { patchRental } from '../redux/actions/rentals';
 import ReturnModal from './ReturnModal';
 
 class LoanCard extends React.Component{

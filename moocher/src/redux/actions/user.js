@@ -27,7 +27,6 @@ export function fetchingUser(username, password) {
       })
     }).then(res => res.json())
       .then( user => {
-        console.log(user)
         if (user.authenticated){
           localStorage.setItem('token', user.token)
           // debugger

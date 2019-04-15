@@ -1,13 +1,8 @@
 import React from 'react'
 import { Card, Button, Image } from 'semantic-ui-react'
 import { connect } from 'react-redux';
-import { patchRental } from '../redux/actions/updateRental';
+import { patchRental } from '../redux/actions/rentals';
 import { setUser } from '../redux/actions/user';
-
-
-
-
-
 
 
 
