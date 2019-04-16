@@ -59,7 +59,7 @@ class RentItemCalendar extends React.Component {
     } else {
       console.log(this.props.rentals);
       let filteredRentals = this.props.rentals.filter(
-        rental => rental.item.id === this.props.item.id
+        rental => rental.item.id === this.props.item.id && rental.status !== "Available"
       );
       console.log(filteredRentals);
       for (let rental of filteredRentals) {
