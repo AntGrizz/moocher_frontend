@@ -4,7 +4,10 @@ import { connect } from 'react-redux';
 import LoginPage from '../components/LoginPage';
 import Profile from './Profile';
 import GroupItems from '../containers/GroupItems';
+import UserItems from '../containers/UserItems';
+import Rentals from '../containers/Rentals';
 import CreateUser from '../components/CreateUser';
+import ListItem from '../components/ListItem';
 import NavBar from '../components/NavBar';
 import { fetchingUsers } from '../redux/actions/users';
 import { fetchingGroups } from '../redux/actions/groups';
@@ -30,7 +33,7 @@ class Moocher extends Component {
         <NavBar />
 
         <Switch>
-          <Route exact path="/" render={() => <Redirect to="/profile" />} />
+          <Route exact path="/" render={() => <Redirect to="/rent_items" />} />
           <Route
             exact
             path="/profile"
@@ -50,14 +53,13 @@ class Moocher extends Component {
               return isEmpty(this.props.user) ? (
                 <LoginPage />
               ) : (
-                <Redirect to="/profile" />
+                <Redirect to="/rent_items" />
               );
             }}
           />
-
           <Route
             exact
-            path="/items"
+            path="/rent_items"
             render={() => {
               return isEmpty(this.props.user) ? (
                 <Redirect to="/login" />
@@ -66,6 +68,41 @@ class Moocher extends Component {
               );
             }}
           />
+          <Route
+            exact
+            path="/user_items"
+            render={() => {
+              return isEmpty(this.props.user) ? (
+                <Redirect to="/login" />
+              ) : (
+                <UserItems />
+              );
+            }}
+          />
+          <Route
+            exact
+            path="/rentals"
+            render={() => {
+              return isEmpty(this.props.user) ? (
+                <Redirect to="/login" />
+              ) : (
+                <Rentals />
+              );
+            }}
+          />
+
+          <Route
+            exact
+            path="/list_item"
+            render={() => {
+              return isEmpty(this.props.user) ? (
+                <Redirect to="/login" />
+              ) : (
+                <ListItem />
+              );
+            }}
+          />
+
           <Route exact path="/create_account" component={CreateUser} />
         </Switch>
       </div>

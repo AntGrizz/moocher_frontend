@@ -12,9 +12,13 @@ class RentModal extends React.Component {
     super();
     this.state = {
       start: '',
-      end: ''
+      end: '',
+      open: false
     };
   }
+
+  open = () => this.setState({ open: true });
+  close = () => this.setState({ open: false });
 
   handleCalendar = (start, end) => {
     this.setState({ start: this.convert(start), end: this.convert(end) });
@@ -39,11 +43,16 @@ class RentModal extends React.Component {
 
   render() {
     return (
-      <Modal trigger={<Button>Rent Item</Button>}>
+      <Modal
+        open={this.state.open}
+        onOpen={this.open}
+        trigger={<Button>Rent Item</Button>}
+      >
         <Modal.Header>{this.props.item.name}</Modal.Header>
         <Modal.Description>
           <h3>
-            Owner: {this.props.item.owner.first_name} {this.props.item.owner.last_name}
+            Owner: {this.props.item.owner.first_name}{' '}
+            {this.props.item.owner.last_name}
           </h3>
           <h3> Condition: {this.props.item.condition}</h3>
         </Modal.Description>
@@ -58,8 +67,25 @@ class RentModal extends React.Component {
         <br />
         <br />
         <Modal.Actions>
-          <Button basic color="black" onClick={() => this.handleSubmit()}>
+          <Button
+            basic
+            color="black"
+            onClick={() => {
+              this.handleSubmit();
+              this.close();
+              alert(`Your request has been submited for ${this.state.start} - ${this.state.end}`)
+            }}
+          >
             Submit Request
+          </Button>
+          <Button
+            basic
+            color="black"
+            onClick={() => {
+              this.close();
+            }}
+          >
+            Cancel Request
           </Button>
         </Modal.Actions>
       </Modal>

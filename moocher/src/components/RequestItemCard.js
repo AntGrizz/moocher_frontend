@@ -1,7 +1,7 @@
 import React from 'react'
 import { Card, Button, Image } from 'semantic-ui-react'
 import { connect } from 'react-redux';
-import { patchRental } from '../redux/actions/rentals';
+import { approveRental } from '../redux/actions/rentals';
 import { setUser } from '../redux/actions/user';
 
 
@@ -46,15 +46,11 @@ const mapDispatchToProps = dispatch => {
   return {
     approveRental: (request, user) => {
       // debugger
-      dispatch(patchRental(request, 'rented', user));
+      dispatch(approveRental(request, 'Rented', user));
     },
     denyRental: (request, user) => {
       // debugger
-      dispatch(patchRental(request, 'available', user));
-    },
-    setUser: (user) => {
-      // debugger
-      dispatch(setUser(user));
+      dispatch(approveRental(request, 'Available', user));
     }
   };
 };

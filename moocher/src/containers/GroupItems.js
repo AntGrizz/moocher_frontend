@@ -8,10 +8,10 @@ import CategoryDropdown from '../components/CategoryDropdown'
 
 
 class GroupItems extends React.Component {
-  constructor() {
+  constructor(){
     super();
     this.state = {
-      category: 'Family',
+      category: 'Family'
     };
   }
 
@@ -24,7 +24,6 @@ class GroupItems extends React.Component {
   }
 
   render() {
-
     return (
       <div className='page-div'>
         <div>
@@ -37,7 +36,7 @@ class GroupItems extends React.Component {
           />
         </div>
         <Card.Group itemsPerRow={4}>
-          {!this.props.user ? null : this.findCategory().map(item => <GroupCard key={item.id} item={item}/>)}
+          {isEmpty(this.props.groups) ? <div>Loading... Hang Tight!</div>  : this.findCategory().map(item => <GroupCard key={item.id} item={item}/>)}
         </Card.Group>
       </div >
     )

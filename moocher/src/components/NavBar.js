@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { setUser } from '../redux/actions/user';
 import { Link } from 'react-router-dom';
 
-
 class NavBar extends Component {
   state = {};
 
@@ -17,41 +16,63 @@ class NavBar extends Component {
       <Menu inverted>
         <Menu.Item
           as={Link}
+          to="/rent_items"
+          name="rent_items"
+          active={activeItem === 'rent_items'}
+          onClick={this.handleItemClick}
+        >
+          Mooch
+        </Menu.Item>
+
+        <Menu.Item
+          as={Link}
           to="/profile"
           name="profile"
           active={activeItem === 'profile'}
           onClick={this.handleItemClick}
         >
-          User Profile
+          Requests/Loans
         </Menu.Item>
 
         <Menu.Item
           as={Link}
-          to="/items"
-          name="items"
-          active={activeItem === 'items'}
+          name="user_items"
+          to="/user_items"
+          active={activeItem === 'user_items'}
           onClick={this.handleItemClick}
         >
-          Group Items
+          Your Items
         </Menu.Item>
 
         <Menu.Item
-          name="unknown"
-          active={activeItem === 'unknown'}
+          as={Link}
+          to="/rentals"
+          name="rentals"
+          active={activeItem === 'rentals'}
           onClick={this.handleItemClick}
         >
-          Unknown
+          Rentals
         </Menu.Item>
 
-        <Menu.Menu position='right'>
         <Menu.Item
-          name='logout'
-          active={activeItem === 'logout'}
-          onClick={ () => {
-            const user = {}
-            localStorage.clear()
-            this.props.clearUser(user)
-          }}
+          as={Link}
+          to="/list_item"
+          name="list_item"
+          active={activeItem === 'list_item'}
+          onClick={this.handleItemClick}
+        >
+          List Item
+        </Menu.Item>
+
+        <Menu.Menu position="right">
+          <Menu.Item
+            name="logout"
+            active={activeItem === 'logout'}
+            onClick={() => {
+              const user = {};
+              localStorage.clear();
+              this.props.clearUser(user);
+            }}
           />
         </Menu.Menu>
       </Menu>
@@ -59,13 +80,13 @@ class NavBar extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch =>{
+const mapDispatchToProps = dispatch => {
   return {
-    clearUser: (user) => {
-      dispatch(setUser(user))
+    clearUser: user => {
+      dispatch(setUser(user));
     }
-  }
-}
+  };
+};
 
 export default connect(
   null,

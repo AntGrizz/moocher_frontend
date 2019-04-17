@@ -38,7 +38,8 @@ h1, h2, h3, h4, h5, h6 {
  padding: 3vw;
  border: 1px solid lightgray;
  border-radius: 1rem;
- background: #484d5c;
+ background: #99a1b9;
+ color: white
 }
 
 #create-area{
@@ -47,8 +48,9 @@ h1, h2, h3, h4, h5, h6 {
  padding: 3vw;
  border: 1px solid lightgray;
  border-radius: 1rem;
- background: #484d5c;
+ background: #99a1b9;
 }
+
 
 
 .card {

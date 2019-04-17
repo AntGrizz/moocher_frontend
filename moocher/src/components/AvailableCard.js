@@ -1,7 +1,7 @@
 import React from 'react'
 import { Card, Button } from 'semantic-ui-react'
 import { connect } from 'react-redux';
-import { patchRental } from '../redux/actions/rentals';
+import { approveRental } from '../redux/actions/rentals';
 import marked from 'marked';
 
 class AvailableCard extends React.Component {
@@ -46,7 +46,7 @@ class AvailableCard extends React.Component {
 const mapDispatchToProps = dispatch => {
   return {
     closeRental: (rental, user) => {
-      dispatch(patchRental(rental, 'available', user));
+      dispatch(approveRental(rental, 'available'));
     },
   }
 };

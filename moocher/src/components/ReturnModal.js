@@ -27,7 +27,7 @@ class ReturnModal extends React.Component{
           </Modal.Description>
         </Modal.Content>
         <Modal.Content >
-          <div className='ui one button return'>
+          <div className='ui one button'>
             <Button basic color='black' onClick={() => this.props.closeRental(this.props.rental, this.state.condition)}>
               Return
         </Button>
@@ -49,7 +49,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = dispatch => {
   return {
     closeRental: (rental, condition) => {
-      dispatch(patchRental(rental, 'available', condition));
+      dispatch(patchRental(rental, 'Available', condition));
     },
   }
 };

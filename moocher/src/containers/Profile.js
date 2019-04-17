@@ -3,12 +3,13 @@ import { connect } from 'react-redux';
 import { Card } from 'semantic-ui-react';
 import LoanedItemCard from '../components/LoanedItemCard'
 import RequestItemCard from '../components/RequestItemCard'
-import {AvailableCard} from '../components/AvailableCard'
+
 
 
 class Profile extends React.Component{
 
   render(){
+    console.log(this.props.user)
     return (
       <div className='page-div'>
         <div>
@@ -18,7 +19,8 @@ class Profile extends React.Component{
           <br></br>
           </div>
             <Card.Group itemsPerRow={4}>
-              {!this.props.user ? null : this.props.user.requests.map(request => (<RequestItemCard request={request} key={request.id} user={this.props.user} users={this.props.users} />))}
+              {console.log(this.props.user)}
+             {!this.props.user ? null : this.props.user.requests.map(request => (<RequestItemCard request={request} key={request.id} user={this.props.user} users={this.props.users} />))}
             </Card.Group>
             <br></br>
         <div >

@@ -3,8 +3,8 @@ export const FETCHED_RENTALS = 'FETCHED_RENTALS';
 export const CREATE_RENTAL = 'CREATE_RENTAL';
 const URL = `http://localhost:3000/rented_items`;
 
-export function patchRental(rental, status, condition) {
-  debugger;
+export function approveRental(rental, status) {
+  // debugger;
   return dispatch => {
     fetch(URL + `/${rental.id}`, {
       method: 'PATCH',
@@ -14,7 +14,28 @@ export function patchRental(rental, status, condition) {
         Authentication: `Bearer ${localStorage.token}`
       },
       body: JSON.stringify({
-        status: status,
+        status: status
+      })
+    })
+      .then(res => res.json())
+      .then(user => {
+        console.log('Rental was updated for', user);
+        dispatch(setUser(user));
+      });
+  };
+}
+
+export function patchRental(rental, status, condition) {
+  return dispatch => {
+    fetch(URL + `/${rental.id}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+        Authentication: `Bearer ${localStorage.token}`
+      },
+      body: JSON.stringify({
+        status: status, 
         end_condition: condition
       })
     })
@@ -56,7 +77,7 @@ export function postRentalRequest(renter_id, item_id, start, end, condition) {
         start_date: start,
         end_date: end,
         start_condition: condition,
-        status: "Pending"
+        status: 'Pending'
       })
     })
       .then(res => res.json())
