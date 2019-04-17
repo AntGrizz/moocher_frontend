@@ -1,10 +1,24 @@
 import React from 'react';
-import { Card, Image } from 'semantic-ui-react';
+import { Card, Image, Button } from 'semantic-ui-react';
 import { connect } from 'react-redux';
-
-
+import MapModal from '../components/MapModal';
 
 class LoanCard extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      open: false
+    };
+  }
+
+  // handleClick = () => {
+  //   this.setState({ open: !this.state.open });
+  // };
+
+  handleClick = () => {
+    document.getElementById('map').style.display = 'block';
+  };
+
   render() {
     return (
       <Card centered className="card">
@@ -27,6 +41,9 @@ class LoanCard extends React.Component {
         <Card.Description>{`Rental Period: ${this.props.rental.start_date} - ${
           this.props.rental.end_date
         }`}</Card.Description>
+        <Card.Content extra>
+          <Button onClick={this.handleClick}>View Map</Button>
+        </Card.Content>
       </Card>
     );
   }
@@ -41,8 +58,4 @@ const mapStateToProps = state => {
   };
 };
 
-
-
-export default connect(
-  mapStateToProps
-)(LoanCard);
+export default connect(mapStateToProps)(LoanCard);

@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Card } from 'semantic-ui-react';
 import CurrRentalCard from '../components/CurrRentalCard';
+import MapModal from '../components/MapModal';
 
 class Rentals extends React.Component {
   filterRentals = () => {
@@ -15,21 +16,24 @@ class Rentals extends React.Component {
     return this.props.loading ? (
       <div>Loading... Hang Tight!</div>
     ) : (
-      <div className="page-div">
-        <div>
-          <h1>{this.props.user.first_name}'s Mooching On...</h1>
+      <React.Fragment>
+        {/* <MapModal rental={this.props.rental} /> */}
+        <div className="page-div">
+          <div>
+            <h1>{this.props.user.first_name}'s Mooching On...</h1>
+          </div>
+          <br />
+          {this.filterRentals > 1 ? (
+            <h1>You aren't mooching off anyone!</h1>
+          ) : (
+            <Card.Group itemsPerRow={4}>
+              {this.filterRentals().map(rental => (
+                <CurrRentalCard key={rental.id} rental={rental} />
+              ))}
+            </Card.Group>
+          )}
         </div>
-        <br />
-        {this.filterRentals > 1 ? (
-          <h1>You aren't mooching off anyone!</h1>
-        ) : (
-          <Card.Group itemsPerRow={4}>
-            {this.filterRentals().map(rental => (
-            <CurrRentalCard key={rental.id} rental={rental} />
-            ))}
-          </Card.Group>
-        )}
-      </div>
+      </React.Fragment>
     );
   }
 }

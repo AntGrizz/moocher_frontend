@@ -9,6 +9,7 @@ import Rentals from '../containers/Rentals';
 import CreateUser from '../components/CreateUser';
 import ListItem from '../components/ListItem';
 import NavBar from '../components/NavBar';
+import MapModal from '../components/MapModal';
 import { fetchingUsers } from '../redux/actions/users';
 import { fetchingGroups } from '../redux/actions/groups';
 import { fetchingRentals } from '../redux/actions/rentals';
@@ -30,6 +31,7 @@ class Moocher extends Component {
   render() {
     return (
       <div>
+        <MapModal/>
         <NavBar />
 
         <Switch>
