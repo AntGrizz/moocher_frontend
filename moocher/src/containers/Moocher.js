@@ -29,6 +29,7 @@ class Moocher extends Component {
   }
 
   render() {
+  
     return (
       <div>
         <MapModal />
