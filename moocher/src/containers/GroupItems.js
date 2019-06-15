@@ -20,7 +20,7 @@ class GroupItems extends React.Component {
   };
 
   findCategory = () => {
-    return this.props.groups.find(group => group.name === this.state.category).items.filter( item => item.owner.id !== this.props.user.id)
+    return this.props.items.filter( item => item.owner.id !== this.props.user.id)
   }
 
   render() {
@@ -28,7 +28,7 @@ class GroupItems extends React.Component {
       <div className='page-div'>
         <div>
           <h1>
-            Rental Requests
+           Moochables
           </h1>
           <CategoryDropdown
             category={this.state.category}
@@ -49,7 +49,8 @@ const mapStateToProps = (state) => {
   return {
     user: state.user,
     users: state.users,
-    groups: state.groups
+    groups: state.groups,
+    items: state.items
   };
 };
 

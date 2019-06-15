@@ -86,7 +86,7 @@ export function createUser(
     })
     .then(res => res.json())
     .then(user => {
-      dispatch(setUser(user.user))
+      dispatch(fetchingUser(user.user.username, password))
     })
   }
 }

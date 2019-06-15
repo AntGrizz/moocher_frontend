@@ -55,6 +55,7 @@ class RentModal extends React.Component {
             {this.props.item.owner.last_name}
           </h3>
           <h3> Condition: {this.props.item.condition}</h3>
+          <h3> Description: {this.props.item.description}</h3>
         </Modal.Description>
         <br />
         <Modal.Content>
@@ -73,7 +74,11 @@ class RentModal extends React.Component {
             onClick={() => {
               this.handleSubmit();
               this.close();
-              alert(`Your request has been submited for ${this.state.start} - ${this.state.end}`)
+              alert(
+                `Your request has been submited for ${this.state.start} - ${
+                  this.state.end
+                }`
+              );
             }}
           >
             Submit Request

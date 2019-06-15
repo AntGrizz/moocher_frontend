@@ -14,7 +14,7 @@ class Profile extends React.Component{
       <div className='page-div'>
         <div>
           <h1>
-            Rental Requests
+            Mooch Requests
           </h1>
           <br></br>
           </div>
@@ -25,7 +25,7 @@ class Profile extends React.Component{
             <br></br>
         <div >
           <h1>
-            Loaned Items
+            Mooched Items
           </h1>
         </div>
             <Card.Group itemsPerRow={4}>

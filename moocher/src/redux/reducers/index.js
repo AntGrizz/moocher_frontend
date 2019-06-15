@@ -4,6 +4,7 @@ import users from './users'
 import groups from './groups'
 import loading from './loading'
 import rentals from './rentals'
+import items from './items'
 
 
 const rootReducer = combineReducers({
@@ -11,7 +12,8 @@ const rootReducer = combineReducers({
   users,
   groups,
   loading,
-  rentals
+  rentals,
+  items
 })
 
 export default rootReducer

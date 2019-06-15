@@ -24,7 +24,7 @@ class LoanCard extends React.Component{
         }
         <Card.Description>{`Rental Period: ${this.props.rental.start_date} - ${this.props.rental.end_date}`}</Card.Description>
         <Card.Content extra>
-          <ReturnModal rental={this.props.rental}/>
+          <ReturnModal rental={this.props.rental} item={item}/>
         </Card.Content>
       </Card>
     )

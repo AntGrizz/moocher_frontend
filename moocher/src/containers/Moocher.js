@@ -11,6 +11,7 @@ import ListItem from '../components/ListItem';
 import NavBar from '../components/NavBar';
 import MapModal from '../components/MapModal';
 import { fetchingUsers } from '../redux/actions/users';
+import { fetchingItems } from '../redux/actions/item';
 import { fetchingGroups } from '../redux/actions/groups';
 import { fetchingRentals } from '../redux/actions/rentals';
 import { fetchLoggedInUser } from '../redux/actions/user';
@@ -22,6 +23,7 @@ class Moocher extends Component {
     this.props.fetchingUsers();
     this.props.fetchingGroups();
     this.props.fetchingRentals();
+    this.props.fetchingItems();
     let token = localStorage.getItem('token');
     if (token) {
       this.props.fetchLoggedInUser(token);
@@ -29,12 +31,10 @@ class Moocher extends Component {
   }
 
   render() {
-  
     return (
       <div>
-        <MapModal />
         <NavBar />
-
+        <MapModal />
         <Switch>
           <Route exact path="/" render={() => <Redirect to="/rent_items" />} />
           <Route
@@ -132,6 +132,9 @@ const mapDispatchToProps = dispatch => {
     },
     fetchingRentals: () => {
       dispatch(fetchingRentals());
+    },
+    fetchingItems: () => {
+      dispatch(fetchingItems());
     }
   };
 };

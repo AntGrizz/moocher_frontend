@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import { Button, Form, Header, Container } from 'semantic-ui-react';
 import StateDropdown from './StateDropdown';
 import { connect } from 'react-redux';
-import {setUser, createUser}  from '../redux/actions/user';
-
+import { fetchingUser, createUser } from '../redux/actions/user';
 
 class CreateUser extends Component {
   constructor() {
@@ -24,8 +23,8 @@ class CreateUser extends Component {
     this.setState({ state: val });
   };
 
-  handleSubmit = (e) => {
-    e.preventDefault()
+  handleSubmit = e => {
+    e.preventDefault();
     if (this.state.username !== '') {
       this.props.createUser(
         this.state.firstName,
@@ -35,7 +34,8 @@ class CreateUser extends Component {
         this.state.street,
         this.state.city,
         this.state.state,
-        this.state.zipCode) 
+        this.state.zipCode
+      );
       this.resetForm();
     }
   };
@@ -57,7 +57,7 @@ class CreateUser extends Component {
     return (
       <Container className="ui attached segment" id="create-area">
         <Header as="h3">Create User</Header>
-        <Form onSubmit={ e => this.handleSubmit(e)}>
+        <Form onSubmit={e => this.handleSubmit(e)}>
           <Form.Field>
             <label>First Name</label>
             <input
@@ -92,6 +92,7 @@ class CreateUser extends Component {
             <label>Password</label>
             <input
               placeholder="Password"
+              type="password"
               value={this.state.password}
               onChange={e => {
                 this.setState({ password: e.target.value });
@@ -142,17 +143,33 @@ class CreateUser extends Component {
   }
 }
 
-
 const mapDispatchToProps = dispatch => {
   return {
-    createUser: (firstName, lastName, userName, password, street, city, state, zipCode) => {
-      dispatch(createUser(firstName, lastName, userName, password, street, city, state, zipCode))
-    },
-    setUser: (userName, password) => {
-      dispatch(setUser(userName, password))
+    createUser: (
+      firstName,
+      lastName,
+      userName,
+      password,
+      street,
+      city,
+      state,
+      zipCode
+    ) => {
+      dispatch(
+        createUser(
+          firstName,
+          lastName,
+          userName,
+          password,
+          street,
+          city,
+          state,
+          zipCode
+        )
+      );
     }
   }
-}
+};
 
 export default connect(
   null,

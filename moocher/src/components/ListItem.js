@@ -10,7 +10,7 @@ class ListItem extends Component {
     this.state = {
       name: '',
       description: '',
-      image: '',
+      image:'',
       condition: ''
     };
   }
@@ -27,7 +27,7 @@ class ListItem extends Component {
         this.state.description,
         this.state.image,
         this.state.condition,
-        this.props.user.id
+        this.props.user
       );
       this.resetForm();
     }
@@ -94,8 +94,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    listItem: (name, description, image, condition, user_id) => {
-      dispatch(listItem(name, description, image, condition, user_id))
+    listItem: (name, description, image, condition, user) => {
+      dispatch(listItem(name, description, image, condition, user))
     }
   };
 };

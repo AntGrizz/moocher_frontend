@@ -18,10 +18,10 @@ class ReturnModal extends React.Component {
 
   render() {
     return (
-      <Modal trigger={<Button>Return Item</Button>} style="top: -50vh">
+      <Modal trigger={<Button>Return Item</Button>} style={{top: "30vh"}}>
         <Modal.Content image>
           <Modal.Description>
-            <Header>Default Profile Image</Header>
+            <Header>{this.props.item.name}</Header>
             <p>Start Condition: {this.props.rental.start_condition}</p>
             End Condition:
             <ReturnDropdown handleDropDown={this.handleDropDown} />
