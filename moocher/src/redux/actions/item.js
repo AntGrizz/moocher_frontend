@@ -1,7 +1,6 @@
-import { setUser } from './user';
+import { setUser, fetchLoggedInUser } from './user';
 
-export const ADD_ITEM = "ADD_ITEM"
-
+export const ADD_ITEM = 'ADD_ITEM';
 
 const URL = `http://localhost:3000/items`;
 
@@ -44,16 +43,17 @@ export function listItem(name, description, image, condition, user) {
       .then(res => res.json())
       .then(item => {
         console.log(item);
+        console.log(user);
+        console.log(localStorage.token)
         dispatch(addItem(item));
-        dispatch(setUser(user))
+        dispatch(fetchLoggedInUser(localStorage.token))
       });
   };
 }
 
 export function addItem(item) {
-  return { type: ADD_ITEM, payload: item };
+  return { type: 'ADD_ITEM', payload: item };
 }
-
 
 export function fetchedItems(items) {
   return { type: 'FETCHED_ITEMS', payload: items };
