@@ -30,10 +30,10 @@ class GroupItems extends React.Component {
           <h1>
            Moochables
           </h1>
-          <CategoryDropdown
+          {/* <CategoryDropdown
             category={this.state.category}
             handleDropDown={this.handleDropDown}
-          />
+          /> */}
         </div>
         <Card.Group itemsPerRow={4}>
           {isEmpty(this.props.groups) ? <div>Loading... Hang Tight!</div>  : this.findCategory().map(item => <GroupCard key={item.id} item={item}/>)}
