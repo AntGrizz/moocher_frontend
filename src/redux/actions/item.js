@@ -1,21 +1,21 @@
 import { setUser, fetchLoggedInUser } from './user';
 
 export const ADD_ITEM = 'ADD_ITEM';
-
-const URL = `http://localhost:3000/items`;
+const BASE_URL = process.env.REACT_APP_BASE_URL || 'http://localhost:3000';
+// const URL = `http://localhost:3000`;
 
 export function deleteItem(item) {
   return dispatch => {
-    fetch(URL + `/${item.id}`, {
+    fetch(BASE_URL + '/items' +`/${item.id}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
         Accept: 'application/json',
-        Authentication: `Bearer ${localStorage.token}`
-      }
+        Authentication: `Bearer ${localStorage.token}`,
+      },
     })
-      .then(res => res.json())
-      .then(user => {
+      .then((res) => res.json())
+      .then((user) => {
         alert('Your item has been deleted');
         dispatch(setUser(user));
       });
@@ -25,28 +25,28 @@ export function deleteItem(item) {
 export function listItem(name, description, image, condition, user) {
   debugger;
   return dispatch => {
-    fetch(URL, {
+    fetch(BASE_URL + '/items', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         Accept: 'application/json',
-        Authentication: `Bearer ${localStorage.token}`
+        Authentication: `Bearer ${localStorage.token}`,
       },
       body: JSON.stringify({
         name: name,
         description: description,
         image: image,
         condition: condition,
-        user_id: user.id
-      })
+        user_id: user.id,
+      }),
     })
-      .then(res => res.json())
-      .then(item => {
+      .then((res) => res.json())
+      .then((item) => {
         console.log(item);
         console.log(user);
-        console.log(localStorage.token)
+        console.log(localStorage.token);
         dispatch(addItem(item));
-        dispatch(fetchLoggedInUser(localStorage.token))
+        dispatch(fetchLoggedInUser(localStorage.token));
       });
   };
 }
@@ -61,9 +61,9 @@ export function fetchedItems(items) {
 
 export function fetchingItems() {
   return dispatch => {
-    fetch(URL)
-      .then(res => res.json())
-      .then(items => {
+    fetch(BASE_URL + '/items')
+      .then((res) => res.json())
+      .then((items) => {
         dispatch(fetchedItems(items));
       });
   };

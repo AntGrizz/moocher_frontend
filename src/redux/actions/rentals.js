@@ -1,24 +1,25 @@
 import { setUser } from './user';
 export const FETCHED_RENTALS = 'FETCHED_RENTALS';
 export const CREATE_RENTAL = 'CREATE_RENTAL';
-const URL = `http://localhost:3000/rented_items`;
+const BASE_URL = process.env.REACT_APP_BASE_URL || 'http://localhost:3000';
+// const URL = `http://localhost:3000/rented_items`;
 
 export function approveRental(rental, status) {
   // debugger;
   return dispatch => {
-    fetch(URL + `/${rental.id}`, {
+    fetch(BASE_URL + '/rented_items'+`/${rental.id}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
         Accept: 'application/json',
-        Authentication: `Bearer ${localStorage.token}`
+        Authentication: `Bearer ${localStorage.token}`,
       },
       body: JSON.stringify({
-        status: status
-      })
+        status: status,
+      }),
     })
-      .then(res => res.json())
-      .then(user => {
+      .then((res) => res.json())
+      .then((user) => {
         console.log('Rental was updated for', user);
         dispatch(setUser(user));
       });
@@ -27,7 +28,7 @@ export function approveRental(rental, status) {
 
 export function patchRental(rental, status, condition) {
   return dispatch => {
-    fetch(URL + `/${rental.id}`, {
+    fetch(BASE_URL + '/rented_items'+ `/${rental.id}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
@@ -53,7 +54,7 @@ export function fetchedRentals(rentals) {
 
 export function fetchingRentals() {
   return dispatch => {
-    fetch(URL)
+    fetch(BASE_URL + '/rented_items')
       .then(res => res.json())
       .then(rentals => {
         dispatch(fetchedRentals(rentals));
@@ -64,7 +65,7 @@ export function fetchingRentals() {
 export function postRentalRequest(renter_id, item_id, start, end, condition) {
   debugger;
   return dispatch => {
-    fetch(URL, {
+    fetch(BASE_URL + '/rented_items', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

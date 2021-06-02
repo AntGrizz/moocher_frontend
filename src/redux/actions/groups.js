@@ -1,6 +1,6 @@
 export const FETCHED_GROUPS = 'FETCHED_GROUPS';
 
-const URL = 'http://localhost:3000/groups'
+const BASE_URL = process.env.REACT_APP_BASE_URL || 'http://localhost:3000'
 
 
 export function fetchedGroups(groups) {
@@ -9,9 +9,9 @@ export function fetchedGroups(groups) {
 
 export function fetchingGroups() {
   return dispatch => {
-    fetch(URL)
-      .then(res => res.json())
-      .then(groups => {
+    fetch(BASE_URL + '/groups')
+      .then((res) => res.json())
+      .then((groups) => {
         dispatch(fetchedGroups(groups));
       });
   };

@@ -1,6 +1,6 @@
 export const FETCHED_USERS = 'FETCHED_USERS';
-
-const URL = 'http://localhost:3000/users'
+const BASE_URL = process.env.REACT_APP_BASE_URL || 'http://localhost:3000';
+// const URL = 'http://localhost:3000/users'
 
 
 export function fetchedUsers(users) {
@@ -9,7 +9,7 @@ export function fetchedUsers(users) {
 
 export function fetchingUsers() {
   return dispatch => {
-    fetch(URL)
+    fetch(BASE_URL + '/users')
       .then(res => res.json())
       .then(users => {
         dispatch(fetchedUsers(users));

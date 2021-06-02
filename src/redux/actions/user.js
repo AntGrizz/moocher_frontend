@@ -1,8 +1,8 @@
 export const SET_USER = 'SET_USER';
 export const LOADING_USER = 'LOADING_USER'
-
-const URL = 'http://localhost:3000/login'
-const userURL = 'http://localhost:3000/users'
+const BASE_URL = process.env.REACT_APP_BASE_URL || 'http://localhost:3000';
+// const URL = 'http://localhost:3000/login'
+// const userURL = 'http://localhost:3000/users'
 
 
 export const setUser = (user) => {
@@ -18,7 +18,7 @@ export function loadingUser() {
 
 export function fetchingUser(username, password) {
   return dispatch => {
-    fetch(URL, {
+    fetch(BASE_URL + '/login', {
       method: 'POST',
       headers: { "Content-Type": "application/json", "Accept": "application/json" },
       body: JSON.stringify({
@@ -44,7 +44,7 @@ export function fetchingUser(username, password) {
 export function fetchLoggedInUser(token){
   return dispatch => {
     dispatch(loadingUser())
-    fetch(`http://localhost:3000/profile`, {
+    fetch(BASE_URL + `/profile`, {
       headers: {
         "Authentication": `Bearer ${token}`,
       }
@@ -67,7 +67,7 @@ export function createUser(
   zipCode){
   return dispatch => {
     dispatch(loadingUser())
-    fetch(userURL, {
+    fetch(BASE_URL + '/users', {
       method: 'POST',
       headers: { "Content-Type": "application/json", "Accept": "application/json" },
       body: JSON.stringify({
