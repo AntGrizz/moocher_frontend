@@ -9,7 +9,7 @@
     "dotenv": "^7.0.0",
     "google-maps-react": "^2.0.2",
     "marked": "^0.6.2",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "moment-recur": "^1.0.7",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
